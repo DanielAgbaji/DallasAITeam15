@@ -125,6 +125,12 @@ These rules exist so `product.md` stays trustworthy and consistent across every 
 |---|---|
 | Product | TruNorth — choice-driven social-emotional learning (SEL) narrative for ages 5–15 |
 | Project root | `trunorth/` (repo root = DallasAITeam15 monorepo wrapper) |
+| Spec source of truth | `docs/specs/TruNorth Technical Specification.md` / Consolidated spec (intent) |
+| Level 1 script | `docs/scripts/Updated-Script-6-8anxiety .docx` → **The Little Dragon Who Wouldn't Stop Guarding** |
+| Overall implementation status | **🟨 Playable MVP, DOM-scene model.** Three child scenarios (ch1 meadow, **ch2 Little Dragon golden path W1→W6** (Forest→Festival), ch3 calm trees) + parent coach; scene engine; WASD movement; companion safety; counselor insights + together-mode; cross-device Play Together; mobile-responsive viewport; Hono API + SQLite. **Not built:** TileMap, Supabase assets, hosted deploy, e2e/red-team, full remote sync. |
+| Toolchain | Node ≥20 (`.nvmrc` 22), Vite 6, TypeScript 5.8, Vitest 3, Hono, better-sqlite3, tsx |
+| Quick test | `cd trunorth && npm install && npm run demo` → http://localhost:4173/?demo=1 |
+| Last updated | 2026-07-18 (Little Dragon anxiety script + mobile layout) |
 | Spec source of truth | `docs/README.md` + `docs/specs/` (intent) |
 | Level 1 script | `docs/scripts/Scene, script, players.docx` → **The Singing Bridge** (integrated) |
 | Overall implementation status | **🟨 Playable MVP, DOM-scene model.** Two child levels, both grid-backed (**ch1 Everbright Meadow**, **ch2 The Singing Bridge golden path W1→W7** — Wize is the guiding companion, Flicker the dragon physically blocks the bridge until the final walk-across finish; ch3 forest removed 2026-07-17) + parent coach entry; scene engine with multi-tap/repair; **WASD/arrow world movement with collision, companion follow, collectibles**; **parameterized 100×100 grid levels (per-cell color + walkability, canvas background, center-point collision) — every scene binds a grid via `gridMapId`, hub cards show grid thumbnails**; companion safety filters + demo/live clients; counselor insights + Together Mode; **pre-level check-in (3 open-ended questions → 0–10 starting point + bright/steady/gentle placement, fed into journey reflection)**; **declarative stage objects (grid-cell-placed interactables: multi-page dialogs + finish lines that advance/complete a stage — pure JSON authoring)**; local/demo persistence; **Hono API with parent auth, child profiles, remote-progress endpoints (server-built, client not wired), companion + reflect routes, SQLite**; Docker; 36 unit tests + content validate. **Not built:** Supabase assets, hosted deploy, client remote sync, e2e/red-team suites, JSON-Schema CI. **Known broken:** `npm run typecheck` fails (9 errors — see §3.14), so CI is red. Art is grid canvases + inline SVG cast (8-bit pixel-art style); zone PNGs remain for celebration + fallback. |
@@ -156,6 +162,11 @@ DallasAITeam15/
 ```
 trunorth/
 ├── content/
+│   ├── chapters/ch1/          # ✅ Meadow — e1–e3 scenes + leftout/ask-grownup DPs
+│   ├── chapters/ch2/          # ✅ Little Dragon — w1–w6 + 6 DPs (golden path)
+│   ├── chapters/ch3/          # ✅ Forest — c1–c2 + hothead/repair DPs
+│   ├── demo/showcase.bundle.json     # ✅ Canned companion lines (demo mode)
+│   └── fallbacks/companion-fallbacks.json  # ✅ Per-dp band/timeout/safety lines
 │   ├── chapters/ch1/          # ✅ Everbright Meadow — e1–e3 + 2 DPs + 1 dialog + 3 stage objects
 │   ├── chapters/ch2/          # ✅ Singing Bridge — w1–w7 + 6 DPs + 1 dialog + 2 stage objects
 │   ├── demo/showcase.bundle.json     # ✅ 10 canned companion lines (demo mode)
@@ -170,6 +181,12 @@ trunorth/
 ├── api/
 │   └── [[...route]].ts        # ✅ Vercel Node Function — forwards /api/* to the Hono `app`
 ├── server/                    # ✅ Hono API (dev: tsx watch) 🔧 Jose (deploy)
+│   ├── auth/jwt.ts
+│   ├── db/migrate.ts          # SQLite schema migrate
+│   ├── routes/companion.ts    # POST /api/companion
+│   ├── routes/together.ts     # ✅ Play Together rooms (create/join/stream)
+│   ├── index.ts               # app routes
+│   └── main.ts                # listen entry
 │   ├── auth/jwt.ts            # HS256 sign/verify (jose)
 │   ├── config.ts              # ✅ .env loader + serverConfig
 │   ├── db/migrate.ts          # SQLite schema (parents, children, progress, audit)
@@ -179,6 +196,11 @@ trunorth/
 ├── src/
 │   ├── main.ts                # ✅ Boot, screens, startScenario, engine + world wiring
 │   ├── companion/CompanionClient.ts   # ✅ Live + Demo clients
+│   ├── content/               # ✅ SCENES/DPs registry, scenarios, zones
+│   ├── counselor/             # ✅ insights + coPlay discuss prompts
+│   ├── together/inviteStore.ts # ✅ Cross-device invite client (API + offline fallback)
+│   ├── engine/                # ✅ SceneEngine, DecisionResolver
+│   ├── render/characters.ts   # ✅ Full-body SVG cast (Flicker, Wize, …)
 │   ├── config/                # ✅ app.ts, content.ts, gameState.ts (env-driven)
 │   ├── content/               # ✅ SCENES/DPs/DIALOGS registry, scenarios, zones, gridLevels, stageObjects
 │   ├── counselor/             # ✅ insights + coPlay discuss prompts + pre-level checkin
@@ -507,6 +529,8 @@ advanceScene/completeChapter, auto-advance suppression).
 | 2026-07-13 | Updated team board: Daniel L1 done; Ermoni/Gabby/Jose/Vandy/Ranya tasks retargeted. |
 | 2026-07-13 | Organized repo into `docs/{specs,scripts,kickoff,context}`; added configurable `server/config.ts`, `src/config/*`, expanded `.env.example`. |
 | 2026-07-14 | Added world movement: WASD/arrows, collision, proximity interact (E/Space), companion follow, collectible pickup (`WorldRuntime`). |
+| 2026-07-15 | Cross-device **Play Together** invites: SQLite rooms + SSE/poll (`/api/together/rooms`), shareable `?invite=CODE`, name/color/character setup. |
+| 2026-07-18 | Rebased Level 1 on **Little Dragon Who Wouldn't Stop Guarding** (6–8 anxiety script); mobile-responsive game chrome. |
 | 2026-07-17 | Full reality audit: documented server auth/children/progress/reflect endpoints, world movement promoted to ✅, test count 11→13, recorded failing typecheck (CI red), broken lint script, missing `sw.js`; added context files `world-movement.md`, `ui-screens-views.md`, `server-api.md`. |
 | 2026-07-17 | Added parameterized 100×100 grid levels: `GridMap` (cell vector: coordinate/color/walkable, painting API), `gridLevels.ts` (2 demo levels, `?grid=<id>` testing), canvas `gridBackground.ts`, center-point grid collision in `WorldRuntime`, optional `Scene.gridMapId`; tests 13→19; context file `world-grid-levels.md`. |
 | 2026-07-17 | Made grid levels the only levels: all ch1/ch2 scenes bind `gridMapId` (everbright-meadow / singing-bridge), hub cards render grid canvas thumbnails, ch1 scenario retitled "Everbright Meadow"; **removed ch3 Forest** (content files + registry + hub card + default unlock); tests 19→20; typecheck errors 11→9. |

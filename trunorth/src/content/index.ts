@@ -65,21 +65,18 @@ export function getDialog(id: string): DialogRecord | undefined {
   return DIALOGS[id];
 }
 
-/** Level 1 — The Singing Bridge (conference demo path) */
-export const GOLDEN_PATH = ["w1", "w2", "w3", "w4", "w5", "w6", "w7"];
+/** Level 1 — The Little Dragon Who Wouldn't Stop Guarding (ages 6–8) */
+export const GOLDEN_PATH = ["w1", "w2", "w3", "w4", "w5", "w6"];
 
 export const CHAPTER_FINALE: Record<string, string> = {
   ch1: "e3",
-  ch2: "w7",
+  ch2: "w6",
 };
 
-/**
- * Decisions that complete their chapter on a strong resolve. ch2 has none:
- * after dp_crossing the player physically walks the bridge to the w7
- * finish-object checkmark.
- */
+/** Decisions that complete their chapter on a strong resolve. */
 export const CHAPTER_COMPLETE_DECISION: Record<string, string> = {
   ch1: "dp_ask_grownup",
+  ch2: "dp_crossing",
 };
 
 /** Multi-step mini-games: required taps before a strong resolve */

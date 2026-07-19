@@ -8,6 +8,7 @@ import { zoneFromBackground, zoneForChapter } from "../content/zones.js";
 import { isGridDebug, resolveGridLevel } from "../content/gridLevels.js";
 import { renderGridBackground } from "../render/gridBackground.js";
 import { contentConfig } from "../config/content.js";
+import { COLOR_TUNES, type TogetherPlayer } from "../together/inviteStore.js";
 import { isSpeechSupported, isVoiceEnabled, setVoiceEnabled, speakLine, stopSpeaking } from "../audio/speech.js";
 
 export interface CounselorPanelData {
@@ -40,6 +41,7 @@ export function renderGameView(
   coPlayStep: CoPlayStep = "discuss",
   onCoPlayReady?: () => void,
   onWorldReady?: (viewport: HTMLElement, scene: Scene, exploring: boolean) => void,
+  togetherPlayers: TogetherPlayer[] = [],
   onObject?: (objectId: string) => void,
   dialogState: DialogViewState | null = null,
   onDialogNext?: () => void,
@@ -49,6 +51,9 @@ export function renderGameView(
 
   const root = document.createElement("div");
   root.className = "game-root";
+  if (phase === "decision" || phase === "encounter" || phase === "awaitingCompanion") {
+    root.classList.add("choices-open");
+  }
 
   const viewport = document.createElement("div");
   viewport.className = "game-viewport";
@@ -67,6 +72,22 @@ export function renderGameView(
     togetherPill.className = "together-pill";
     togetherPill.textContent = "Playing Together";
     viewport.appendChild(togetherPill);
+
+    if (togetherPlayers.length > 0) {
+      const badges = document.createElement("div");
+      badges.className = "together-player-badges";
+      badges.setAttribute("aria-label", "Players");
+      for (const player of togetherPlayers) {
+        const badge = document.createElement("div");
+        badge.className = "together-player-badge";
+        badge.style.setProperty("--player-accent", COLOR_TUNES[player.colorTune].accent);
+        badge.style.setProperty("--player-soft", COLOR_TUNES[player.colorTune].soft);
+        const role = player.role === "parent" ? "Parent" : "Child";
+        badge.innerHTML = `<span class="badge-dot"></span><span class="badge-name">${escapeText(player.displayName)}</span><span class="badge-role">${role}</span>`;
+        badges.appendChild(badge);
+      }
+      viewport.appendChild(badges);
+    }
   }
 
   const brownie = document.createElement("div");
@@ -152,7 +173,7 @@ export function renderGameView(
       const [x, y] = ch.position;
       el.style.left = `${(x / 1920) * 100}%`;
       el.style.top = `${(y / 1080) * 100}%`;
-      el.style.zIndex = String(10 + Math.floor(y / 20));
+      el.style.zIndex = String(1 + Math.min(11, Math.floor(y / 100)));
       el.style.setProperty("--char-size", ch.id === "worry_cloud" ? "120" : "110");
 
       const sprite = document.createElement("div");
@@ -175,7 +196,7 @@ export function renderGameView(
         ch.id === "companion"
           ? companionName
           : ch.id === "avatar"
-            ? "You"
+            ? state.profile.childDisplayName || "You"
             : ch.id === "wize"
               ? "Wize"
               : ch.id === "leftout"
@@ -288,7 +309,7 @@ export function renderGameView(
 
   if ((phase === "decision" || phase === "encounter") && activeDecisionId) {
     renderDecisionOverlay(
-      container,
+      root,
       activeDecisionId,
       onChoice,
       onTyped,

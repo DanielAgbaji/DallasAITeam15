@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { GridMap, gridCellToWorld } from "../../src/engine/GridMap.js";
 import { getGridLevel } from "../../src/content/gridLevels.js";
-import { DIALOGS, SCENES, getDialog, getScene } from "../../src/content/index.js";
+import { DIALOGS, SCENES, GOLDEN_PATH, CHAPTER_COMPLETE_DECISION, getDialog, getScene } from "../../src/content/index.js";
 import { objectSprite, objectWorldPos, sceneObjects } from "../../src/content/stageObjects.js";
 import { SceneEngine, type EngineCallbacks } from "../../src/engine/SceneEngine.js";
 import { createInitialGameState } from "../../src/config/gameState.js";
@@ -99,28 +99,16 @@ describe("stage object content integrity", () => {
     }
   });
 
-  it("completes ch2 by walking to the w7 checkmark after dp_crossing", () => {
-    // dp_crossing no longer ends the chapter — its strong band leads to w7…
+  it("completes ch2 via dp_crossing after the Little Dragon festival steps", () => {
+    // Festival finale resolves on a strong dp_crossing (Star Crystal celebration).
+    expect(CHAPTER_COMPLETE_DECISION.ch2).toBe("dp_crossing");
+
     const w6 = getScene("w6")!;
-    expect(w6.nextSceneId).toBe("w7");
+    expect(w6.decisionPoints).toContain("dp_crossing");
+    expect(GOLDEN_PATH[GOLDEN_PATH.length - 1]).toBe("w6");
 
-    // …where the only finish/complete object in ch2 waits across the bridge.
-    const completes = Object.values(SCENES)
-      .filter((s) => s.chapterId === "ch2")
-      .flatMap((s) =>
-        sceneObjects(s)
-          .filter((o) => o.interaction.kind === "finish" && o.interaction.mode === "complete")
-          .map((o) => ({ sceneId: s.id, obj: o })),
-      );
-    expect(completes).toHaveLength(1);
-    expect(completes[0].sceneId).toBe("w7");
-
-    // The checkmark sits on the north bank: crossing the river is required.
-    const level = getGridLevel("singing-bridge")!;
-    const [col, row] = completes[0].obj.cell;
-    expect(level.map.cellAt(col, row)?.walkable).toBe(true);
-    expect(row).toBeLessThan(38); // north of the river band (rows 38–59)
-    expect(level.spawnCell[1]).toBeGreaterThan(59); // spawn is south of it
+    // Upstream Singing Bridge walk-finish (w7) remains available as optional content.
+    expect(getScene("w7")).toBeDefined();
   });
 });
 
