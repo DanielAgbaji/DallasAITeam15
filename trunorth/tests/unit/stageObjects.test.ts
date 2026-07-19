@@ -89,13 +89,23 @@ describe("stage object content integrity", () => {
   });
 
   it("registers dialogs with non-empty pages", () => {
-    expect(Object.keys(DIALOGS).length).toBeGreaterThanOrEqual(2);
+    expect(Object.keys(DIALOGS).length).toBeGreaterThanOrEqual(8);
     for (const [id, dialog] of Object.entries(DIALOGS)) {
       expect(dialog.id).toBe(id);
       expect(dialog.pages.length).toBeGreaterThan(0);
       for (const page of dialog.pages) {
         expect(page.text.trim().length).toBeGreaterThan(0);
       }
+    }
+  });
+
+  it("gives every Little Dragon scene something to explore", () => {
+    for (const id of ["w1", "w2", "w3", "w4", "w5", "w6", "w7"]) {
+      const scene = getScene(id)!;
+      const objects = sceneObjects(scene);
+      const sparks = scene.collectibles ?? [];
+      expect(objects.length + sparks.length, `${id} should have hotspots or sparks`).toBeGreaterThan(0);
+      expect(objects.length, `${id} should have at least one walk-up object`).toBeGreaterThan(0);
     }
   });
 

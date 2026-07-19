@@ -1,0 +1,14 @@
+{
+  "id": "dlg_festival_stage",
+  "chapterId": "ch4",
+  "speaker": "Flicker",
+  "speakerAssetRef": "char_flicker_dragon",
+  "pages": [
+    {
+      "text": "We're… on the stage. My wings are shaking. Yours might be too. That's okay."
+    },
+    {
+      "text": "We listened. We walked together. The Star Crystal is waiting — go get it when you're ready."
+    }
+  ]
+}

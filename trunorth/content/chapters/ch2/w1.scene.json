@@ -12,18 +12,35 @@
     { "assetRef": "char_flicker_dragon", "id": "flicker", "position": [960, 700], "expression": "worried", "solidSize": [190, 80] }
   ],
   "triggers": [
-    { "id": "quest_trigger", "bounds": [440, 640, 400, 220], "action": "startDecision", "target": "dp_quest_start" }
+    { "id": "quest_trigger", "bounds": [500, 660, 280, 180], "action": "startDecision", "target": "dp_quest_start" }
   ],
   "collectibles": [
-    { "id": "spark_start", "assetRef": "collectible_spark", "position": [280, 840], "kind": "kindness_spark" }
+    { "id": "spark_start", "assetRef": "collectible_spark", "position": [280, 840], "kind": "kindness_spark" },
+    { "id": "spark_glade", "assetRef": "collectible_spark", "position": [1400, 360], "kind": "kindness_spark" }
   ],
   "objects": [
     {
       "id": "obj_star_notice",
       "cell": [70, 80],
       "assetRef": "notice_scroll",
-      "hint": "Press E to read",
+      "hint": "Press E to read the Star Crystal scroll",
       "interaction": { "kind": "openDialog", "dialogId": "dlg_star_legend" }
+    },
+    {
+      "id": "obj_forest_feather",
+      "cell": [22, 72],
+      "assetRef": "question_feather",
+      "label": "Question Feather",
+      "hint": "Press E to pick up the feather tip",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_forest_feather" }
+    },
+    {
+      "id": "obj_forest_moss",
+      "cell": [78, 55],
+      "assetRef": "moss_log",
+      "label": "Mossy log",
+      "hint": "Press E to look closer",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_forest_moss" }
     }
   ],
   "decisionPoints": ["dp_quest_start"],

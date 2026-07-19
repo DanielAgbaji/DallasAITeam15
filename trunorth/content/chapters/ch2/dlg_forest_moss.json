@@ -1,0 +1,14 @@
+{
+  "id": "dlg_forest_moss",
+  "chapterId": "ch2",
+  "speaker": "Flicker",
+  "speakerAssetRef": "char_flicker_dragon",
+  "pages": [
+    {
+      "text": "This mossy log looks… suspiciously soft. What if there's a snake? Or a stick that LOOKS like a snake?"
+    },
+    {
+      "text": "…Okay. Maybe it's just a log. Still — I'll watch it for you. That's my job."
+    }
+  ]
+}

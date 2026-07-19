@@ -1,0 +1,14 @@
+{
+  "id": "dlg_cave_crystal",
+  "chapterId": "ch3",
+  "speaker": "Wize",
+  "speakerAssetRef": "char_wize",
+  "pages": [
+    {
+      "text": "This crystal holds a memory: Flicker once warned about a real cliff. That wasn't broken — that was purpose."
+    },
+    {
+      "text": "The hard skill is telling danger from possibility. Thank your guardian for the times it helped."
+    }
+  ]
+}

@@ -13,10 +13,29 @@
     { "assetRef": "fx_worry_cloud", "id": "worry_cloud", "position": [640, 500], "expression": "big" }
   ],
   "triggers": [
-    { "id": "forest_questions", "bounds": [400, 600, 560, 260], "action": "startDecision", "target": "dp_investigate" }
+    { "id": "forest_questions", "bounds": [480, 640, 360, 200], "action": "startDecision", "target": "dp_investigate" }
   ],
   "collectibles": [
-    { "id": "spark_forest", "assetRef": "collectible_spark", "position": [300, 820], "kind": "kindness_spark" }
+    { "id": "spark_forest", "assetRef": "collectible_spark", "position": [300, 820], "kind": "kindness_spark" },
+    { "id": "spark_north_glade", "assetRef": "collectible_spark", "position": [680, 220], "kind": "kindness_spark" }
+  ],
+  "objects": [
+    {
+      "id": "obj_w2_feather",
+      "cell": [75, 32],
+      "assetRef": "question_feather",
+      "label": "Question Feather",
+      "hint": "Press E — ask a curious question",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_forest_feather" }
+    },
+    {
+      "id": "obj_w2_moss",
+      "cell": [18, 70],
+      "assetRef": "moss_log",
+      "label": "Mossy log",
+      "hint": "Press E to investigate",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_forest_moss" }
+    }
   ],
   "decisionPoints": ["dp_investigate"]
 }

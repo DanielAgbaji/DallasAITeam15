@@ -12,10 +12,29 @@
     { "assetRef": "char_flicker_dragon", "id": "flicker", "position": [600, 760], "expression": "worried", "solidSize": [190, 80] }
   ],
   "triggers": [
-    { "id": "purpose_trigger", "bounds": [400, 620, 600, 260], "action": "startDecision", "target": "dp_choose_path" }
+    { "id": "purpose_trigger", "bounds": [460, 640, 440, 200], "action": "startDecision", "target": "dp_choose_path" }
   ],
   "collectibles": [
-    { "id": "spark_cave", "assetRef": "collectible_spark", "position": [240, 780], "kind": "kindness_spark" }
+    { "id": "spark_cave", "assetRef": "collectible_spark", "position": [240, 780], "kind": "kindness_spark" },
+    { "id": "spark_vein", "assetRef": "collectible_spark", "position": [1280, 420], "kind": "kindness_spark" }
+  ],
+  "objects": [
+    {
+      "id": "obj_memory_crystal",
+      "cell": [40, 48],
+      "assetRef": "memory_crystal",
+      "label": "Memory crystal",
+      "hint": "Press E to view the glowing memory",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_cave_crystal" }
+    },
+    {
+      "id": "obj_cave_crystal_2",
+      "cell": [68, 34],
+      "assetRef": "memory_crystal",
+      "label": "Crystal vein",
+      "hint": "Press E to listen to the cave",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_cave_crystal" }
+    }
   ],
   "decisionPoints": ["dp_choose_path"]
 }

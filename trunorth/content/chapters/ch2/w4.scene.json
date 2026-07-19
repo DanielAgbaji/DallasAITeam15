@@ -13,8 +13,29 @@
     { "assetRef": "char_helper_deer", "id": "helper_deer", "position": [1160, 780], "expression": "calm" }
   ],
   "triggers": [
-    { "id": "welcome_trigger", "bounds": [400, 620, 520, 260], "action": "startDecision", "target": "dp_breathe" }
+    { "id": "welcome_trigger", "bounds": [460, 640, 400, 200], "action": "startDecision", "target": "dp_breathe" }
   ],
-  "collectibles": [],
+  "collectibles": [
+    { "id": "spark_valley", "assetRef": "collectible_spark", "position": [240, 760], "kind": "kindness_spark" },
+    { "id": "spark_hill", "assetRef": "collectible_spark", "position": [1500, 700], "kind": "kindness_spark" }
+  ],
+  "objects": [
+    {
+      "id": "obj_welcome_stone",
+      "cell": [18, 55],
+      "assetRef": "welcome_stone",
+      "label": "Welcome stone",
+      "hint": "Press E to hear the Turtle Sage",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_valley_stone" }
+    },
+    {
+      "id": "obj_valley_flower",
+      "cell": [78, 40],
+      "assetRef": "worry_flower",
+      "label": "Quiet flower",
+      "hint": "Press E to look around",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_meadow_flower" }
+    }
+  ],
   "decisionPoints": ["dp_breathe"]
 }

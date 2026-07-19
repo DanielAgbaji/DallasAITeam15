@@ -12,10 +12,29 @@
     { "assetRef": "char_flicker_dragon", "id": "flicker", "position": [560, 780], "expression": "worried", "solidSize": [190, 80] }
   ],
   "triggers": [
-    { "id": "meadow_inspect", "bounds": [360, 620, 640, 240], "action": "startDecision", "target": "dp_fact_sort" }
+    { "id": "meadow_inspect", "bounds": [420, 640, 480, 200], "action": "startDecision", "target": "dp_fact_sort" }
   ],
   "collectibles": [
-    { "id": "spark_meadow", "assetRef": "collectible_spark", "position": [1100, 800], "kind": "kindness_spark" }
+    { "id": "spark_meadow", "assetRef": "collectible_spark", "position": [1100, 800], "kind": "kindness_spark" },
+    { "id": "spark_petal", "assetRef": "collectible_spark", "position": [360, 520], "kind": "kindness_spark" }
+  ],
+  "objects": [
+    {
+      "id": "obj_worry_flower",
+      "cell": [70, 36],
+      "assetRef": "worry_flower",
+      "label": "Worry-flower",
+      "hint": "Press E to inspect the flower",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_meadow_flower" }
+    },
+    {
+      "id": "obj_tiny_flower",
+      "cell": [22, 68],
+      "assetRef": "worry_flower",
+      "label": "Tiny worry",
+      "hint": "Press E to look with curiosity",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_meadow_flower" }
+    }
   ],
   "decisionPoints": ["dp_fact_sort"]
 }

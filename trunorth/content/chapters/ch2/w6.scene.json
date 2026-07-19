@@ -12,9 +12,30 @@
     { "assetRef": "char_flicker_dragon", "id": "flicker", "position": [700, 760], "expression": "worried", "solidSize": [190, 80] }
   ],
   "triggers": [
-    { "id": "festival_trigger", "bounds": [440, 600, 520, 280], "action": "startDecision", "target": "dp_crossing" }
+    { "id": "festival_trigger", "bounds": [500, 640, 360, 200], "action": "startDecision", "target": "dp_crossing" }
   ],
-  "collectibles": [],
+  "collectibles": [
+    { "id": "spark_switchback", "assetRef": "collectible_spark", "position": [420, 720], "kind": "kindness_spark" },
+    { "id": "spark_ridge", "assetRef": "collectible_spark", "position": [300, 480], "kind": "kindness_spark" }
+  ],
+  "objects": [
+    {
+      "id": "obj_festival_banner",
+      "cell": [26, 48],
+      "assetRef": "festival_banner",
+      "label": "Festival banner",
+      "hint": "Press E to read the banner",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_mountain_banner" }
+    },
+    {
+      "id": "obj_trail_banner",
+      "cell": [58, 30],
+      "assetRef": "festival_banner",
+      "label": "Trail flag",
+      "hint": "Press E for a courage reminder",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_mountain_banner" }
+    }
+  ],
   "decisionPoints": ["dp_crossing"],
   "nextSceneId": "w7"
 }

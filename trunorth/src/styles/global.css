@@ -933,10 +933,17 @@ body {
   line-height: 1;
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
   transition: transform 0.2s ease, filter 0.2s ease;
+  animation: stage-object-idle 2.4s ease-in-out infinite;
+}
+
+@keyframes stage-object-idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
 .stage-object:hover .stage-object-sprite,
 .stage-object.in-range .stage-object-sprite {
+  animation: none;
   transform: scale(1.15);
   filter: drop-shadow(0 0 14px rgba(255, 214, 10, 0.75));
 }

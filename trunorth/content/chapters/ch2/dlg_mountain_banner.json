@@ -1,0 +1,14 @@
+{
+  "id": "dlg_mountain_banner",
+  "chapterId": "ch4",
+  "speaker": "Wize",
+  "speakerAssetRef": "char_wize",
+  "pages": [
+    {
+      "text": "Sky Festival banners flutter even when the wind is nervous. Courage isn't zero fear — it's taking the next step with your helper beside you."
+    },
+    {
+      "text": "Comfort Flicker first. Then climb one switchback at a time."
+    }
+  ]
+}

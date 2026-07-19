@@ -12,14 +12,24 @@
     { "assetRef": "char_flicker_dragon", "id": "flicker", "position": [640, 220], "expression": "happy" }
   ],
   "triggers": [],
-  "collectibles": [],
+  "collectibles": [
+    { "id": "spark_stage", "assetRef": "collectible_spark", "position": [900, 280], "kind": "kindness_spark" }
+  ],
   "objects": [
+    {
+      "id": "obj_stage_spotlight",
+      "cell": [42, 18],
+      "assetRef": "stage_spotlight",
+      "label": "Stage light",
+      "hint": "Press E — Flicker has something to say",
+      "interaction": { "kind": "openDialog", "dialogId": "dlg_festival_stage" }
+    },
     {
       "id": "obj_festival_finish",
       "cell": [50, 16],
       "assetRef": "finish_check",
-      "label": "Level Complete",
-      "hint": "Press E to finish the level",
+      "label": "Star Crystal",
+      "hint": "Press E to claim your Star Crystal",
       "interaction": { "kind": "finish", "mode": "complete" }
     }
   ],

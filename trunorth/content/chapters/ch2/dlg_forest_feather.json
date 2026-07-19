@@ -1,0 +1,14 @@
+{
+  "id": "dlg_forest_feather",
+  "chapterId": "ch2",
+  "speaker": "Wize",
+  "speakerAssetRef": "char_wize",
+  "pages": [
+    {
+      "text": "A soft Question Feather rests here. Guardians quiet down when someone asks — not \"stop worrying,\" but \"what makes you think that?\""
+    },
+    {
+      "text": "Try it with Flicker. Curiosity is a tool, not a fight."
+    }
+  ]
+}

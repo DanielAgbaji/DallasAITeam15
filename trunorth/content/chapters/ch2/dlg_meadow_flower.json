@@ -1,0 +1,14 @@
+{
+  "id": "dlg_meadow_flower",
+  "chapterId": "ch2",
+  "speaker": "Wize",
+  "speakerAssetRef": "char_wize",
+  "pages": [
+    {
+      "text": "This worry-flower looks enormous from far away. Get closer with your curious eyes — many worries shrink when you inspect them."
+    },
+    {
+      "text": "Remember: yanking them out only makes more grow. Looking carefully is the kinder way."
+    }
+  ]
+}

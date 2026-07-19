@@ -1,0 +1,14 @@
+{
+  "id": "dlg_valley_stone",
+  "chapterId": "ch3",
+  "speaker": "Turtle Sage",
+  "speakerAssetRef": "char_helper_deer",
+  "pages": [
+    {
+      "text": "See those gray dragons on the hills? They were pushed away. Guardians don't leave because they care too much — they just get lonely."
+    },
+    {
+      "text": "A welcome beside you works better than a shove behind you. Invite Flicker to walk with you."
+    }
+  ]
+}

@@ -18,6 +18,13 @@ export const OBJECT_SPRITES: Record<string, string> = {
   finish_flag: "🏁",
   finish_check: "✅",
   arch: "🌈",
+  question_feather: "🪶",
+  moss_log: "🪵",
+  worry_flower: "🌸",
+  welcome_stone: "🪨",
+  memory_crystal: "💎",
+  festival_banner: "🎏",
+  stage_spotlight: "🌟",
 };
 
 export const OBJECT_SPRITE_FALLBACK = "❔";

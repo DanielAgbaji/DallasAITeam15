@@ -22,6 +22,13 @@ import dpAskGrownup from "../../content/chapters/ch1/dp_ask_grownup.json";
 
 import dlgMeadowWelcome from "../../content/chapters/ch1/dlg_meadow_welcome.json";
 import dlgStarLegend from "../../content/chapters/ch2/dlg_star_legend.json";
+import dlgForestFeather from "../../content/chapters/ch2/dlg_forest_feather.json";
+import dlgForestMoss from "../../content/chapters/ch2/dlg_forest_moss.json";
+import dlgMeadowFlower from "../../content/chapters/ch2/dlg_meadow_flower.json";
+import dlgValleyStone from "../../content/chapters/ch2/dlg_valley_stone.json";
+import dlgCaveCrystal from "../../content/chapters/ch2/dlg_cave_crystal.json";
+import dlgMountainBanner from "../../content/chapters/ch2/dlg_mountain_banner.json";
+import dlgFestivalStage from "../../content/chapters/ch2/dlg_festival_stage.json";
 
 export const SCENES: Record<string, Scene> = {
   w1: w1 as Scene,
@@ -59,6 +66,13 @@ export function getDecisionPoint(id: string): DecisionPoint | undefined {
 export const DIALOGS: Record<string, DialogRecord> = {
   dlg_meadow_welcome: dlgMeadowWelcome as DialogRecord,
   dlg_star_legend: dlgStarLegend as DialogRecord,
+  dlg_forest_feather: dlgForestFeather as DialogRecord,
+  dlg_forest_moss: dlgForestMoss as DialogRecord,
+  dlg_meadow_flower: dlgMeadowFlower as DialogRecord,
+  dlg_valley_stone: dlgValleyStone as DialogRecord,
+  dlg_cave_crystal: dlgCaveCrystal as DialogRecord,
+  dlg_mountain_banner: dlgMountainBanner as DialogRecord,
+  dlg_festival_stage: dlgFestivalStage as DialogRecord,
 };
 
 export function getDialog(id: string): DialogRecord | undefined {
