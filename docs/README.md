@@ -6,6 +6,7 @@
 | [`scripts/`](./scripts/) | Creative / narrative scripts (e.g. Level 1 Singing Bridge) |
 | [`kickoff/`](./kickoff/) | Team kickoff materials |
 | [`context/`](./context/) | Deep-dive notes linked from [`../product.md`](../product.md) |
+| [`status/`](./status/) | Weekly work status reports |
 
 **Product ledger (what’s built):** [`../product.md`](../product.md)  
 **App code:** [`../trunorth/`](../trunorth/)
